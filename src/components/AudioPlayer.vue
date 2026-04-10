@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { Volume2, VolumeX } from 'lucide-vue-next';
-import backgroundMusic from '../assets/shane.mpeg';
+import backgroundMusic from '../assets/kungfuhustle.mpeg';
 
 const cacheBuster = Date.now();
 const isPlaying = ref(false);
