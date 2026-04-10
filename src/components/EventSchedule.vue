@@ -1,5 +1,6 @@
 <script setup>
-import { MapPin, Clock, CalendarDays } from 'lucide-vue-next';
+import { MapPin, Clock, CalendarDays, CalendarPlus } from 'lucide-vue-next';
+import NextSectionBtn from './NextSectionBtn.vue';
 </script>
 
 <template>
@@ -55,6 +56,8 @@ import { MapPin, Clock, CalendarDays } from 'lucide-vue-next';
         <MapPin :size="18" /> Buka Google Maps
       </a>
     </div>
+
+    <NextSectionBtn target="gallery" />
   </section>
 </template>
 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { Volume2, VolumeX } from 'lucide-vue-next';
-import backgroundMusic from '../assets/kungfuhustle.mpeg';
+import backgroundMusic from '../assets/shane.mpeg';
 
 const cacheBuster = Date.now();
 const isPlaying = ref(false);
@@ -11,7 +11,7 @@ const hidePrompt = ref(false);
 const toggleAudio = () => {
   if (!audioRef.value) return;
   hidePrompt.value = true;
-  
+
   if (isPlaying.value) {
     audioRef.value.pause();
     isPlaying.value = false;
@@ -92,8 +92,16 @@ onMounted(() => {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

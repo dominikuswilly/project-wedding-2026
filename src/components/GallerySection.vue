@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import NextSectionBtn from './NextSectionBtn.vue';
 
 const images = [
   { id: 1, src: '/images/gallery_1.png', alt: 'Pre-wedding 1' },
@@ -18,6 +19,8 @@ const images = [
         <img :src="img.src" :alt="img.alt" loading="lazy" class="gallery-img" />
       </div>
     </div>
+
+    <NextSectionBtn target="gift" />
   </section>
 </template>
 

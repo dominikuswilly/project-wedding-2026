@@ -1,4 +1,5 @@
 <script setup>
+import NextSectionBtn from './NextSectionBtn.vue';
 </script>
 
 <template>
@@ -7,17 +8,17 @@
       <img src="/images/hero.png" alt="Kevin & Sherley Pre-wedding" class="img-bg" />
       <div class="overlay"></div>
     </div>
-    
+
     <div class="hero-content">
       <p class="pre-title">THE WEDDING OF</p>
-      <h1 class="title">Kevin<br/><span class="and-symbol">&</span><br/>Sherley</h1>
-      
+      <h1 class="title">Kevin<br /><span class="and-symbol">&</span><br />Sherley</h1>
+
       <div class="date-container">
-        <p class="date">14 . 02 . 2026</p>
+        <p class="date">12 . 12 . 2026</p>
       </div>
-      
+
       <p class="scroll-prompt">Scroll to open</p>
-      <div class="scroll-indicator"></div>
+      <NextSectionBtn target="schedule" :light="true" class="hero-next" />
     </div>
   </section>
 </template>
@@ -56,12 +57,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.2) 0%,
-    rgba(0,0,0,0.6) 50%,
-    rgba(47, 54, 46, 0.9) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(47, 54, 46, 0.9) 100%);
 }
 
 .hero-content {
@@ -91,7 +90,7 @@
   line-height: 1.1;
   margin-bottom: 2rem;
   color: var(--color-white);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .and-symbol {
@@ -120,19 +119,12 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   opacity: 0.8;
 }
 
-.scroll-indicator {
-  width: 1px;
-  height: 40px;
-  background-color: var(--color-accent);
-  animation: bounce 2s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); height: 40px; }
-  50% { transform: translateY(10px); height: 20px; }
+.hero-next {
+  margin-top: 0;
+  padding-bottom: 0;
 }
 </style>

@@ -1,7 +1,7 @@
 <script setup>
 import { MessageCircle } from 'lucide-vue-next';
 
-const waNumber = "6281234567890";
+const waNumber = "6285378433655";
 const message = "Halo Kevin & Sherley, saya [Nama Anda] ingin konfirmasi kehadiran pada acara pernikahan kalian. Terima kasih!";
 const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 </script>
@@ -11,9 +11,10 @@ const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
     <div class="rsvp-card">
       <h2 class="section-title mb-4">RSVP</h2>
       <p class="text-center text-muted mb-8">
-        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir di acara pernikahan kami.
+        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir di acara
+        pernikahan kami.
       </p>
-      
+
       <a :href="waLink" target="_blank" class="btn-primary w-full">
         <MessageCircle :size="18" /> Konfirmasi Via WhatsApp
       </a>
@@ -29,7 +30,8 @@ const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 <style scoped>
 .rsvp-section {
   background-color: var(--color-white);
-  padding-bottom: 6rem; /* Extra space for resting scroll */
+  padding-bottom: 6rem;
+  /* Extra space for resting scroll */
 }
 
 .rsvp-card {

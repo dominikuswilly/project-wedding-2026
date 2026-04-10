@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { Copy, Check, QrCode } from 'lucide-vue-next';
+import NextSectionBtn from './NextSectionBtn.vue';
 
 const isCopiedKevin = ref(false);
 const isCopiedSherley = ref(false);
@@ -48,10 +49,10 @@ const copyToClipboard = async (text, person) => {
       <div class="bank-header">
         <h3 class="bank-name">BCA</h3>
       </div>
-      <p class="account-number">0987654321</p>
+      <p class="account-number">0987654XXX</p>
       <p class="account-name">a.n. Sherley</p>
 
-      <button @click="copyToClipboard('0987654321', 'Sherley')" class="btn-copy">
+      <button @click="copyToClipboard('0987654XXX', 'Sherley')" class="btn-copy">
         <Check v-if="isCopiedSherley" :size="16" />
         <Copy v-else :size="16" />
         {{ isCopiedSherley ? 'Tersalin!' : 'Salin Rekening' }}
@@ -73,6 +74,7 @@ const copyToClipboard = async (text, person) => {
       <p class="account-name text-center mt-4">Kevin & Sherley</p>
     </div>
 
+    <NextSectionBtn target="rsvp" />
   </section>
 </template>
 
