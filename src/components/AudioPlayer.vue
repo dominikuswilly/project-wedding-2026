@@ -1,7 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { Volume2, VolumeX } from 'lucide-vue-next';
+import backgroundMusic from '../assets/shane.mpeg';
 
+const cacheBuster = Date.now();
 const isPlaying = ref(false);
 const audioRef = ref(null);
 const hidePrompt = ref(false);
@@ -39,10 +41,7 @@ onMounted(() => {
       <Volume2 v-if="isPlaying" :size="24" />
       <VolumeX v-else :size="24" />
     </button>
-    <audio ref="audioRef" loop>
-      <!-- Dummy audio source -->
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-    </audio>
+    <audio ref="audioRef" loop :src="`${backgroundMusic}?v=${cacheBuster}`"></audio>
   </div>
 </template>
 
