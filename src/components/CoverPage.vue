@@ -4,6 +4,7 @@ import { MailOpen } from 'lucide-vue-next';
 
 const isOpen = ref(false);
 const isHidden = ref(false);
+const guestName = ref('Tamu Undangan');
 
 const openInvitation = () => {
   isOpen.value = true;
@@ -19,6 +20,20 @@ const openInvitation = () => {
 onMounted(() => {
   // Lock scrolling when mounted
   document.body.style.overflow = 'hidden';
+
+  // Get guest name from URL query parameter 'to'
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('to');
+  if (name) {
+    // 1. Replace '+' with space and decode the URI
+    const decodedName = decodeURIComponent(name.replace(/\+/g, ' '));
+    // 2. Simplify input: replace '\n', '|', or ',' followed by optional space with a real newline
+    guestName.value = decodedName
+      .replace(/\\n/g, '\n')
+      .replace(/\|/g, '\n')
+      .replace(/, /g, '\n')
+      .replace(/,/g, '\n');
+  }
 });
 </script>
 
@@ -36,7 +51,7 @@ onMounted(() => {
       
       <div class="recipient-box">
         <p class="recipient-label">Kepada Bapak/Ibu/Saudara/i:</p>
-        <h2 class="recipient-name">Tamu Undangan</h2>
+        <h2 class="recipient-name">{{ guestName }}</h2>
       </div>
       
       <button @click="openInvitation" class="btn-open">
@@ -146,6 +161,13 @@ onMounted(() => {
   font-size: 1.5rem;
   font-weight: 600;
   color: white;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line; /* Respect actual newline characters */
 }
 
 .btn-open {
