@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import NextSectionBtn from './NextSectionBtn.vue';
+import PrevSectionBtn from './PrevSectionBtn.vue';
 
 const images = [
   { id: 1, src: '/images/gallery_1.png', alt: 'Pre-wedding 1' },
@@ -11,6 +12,7 @@ const images = [
 
 <template>
   <section id="gallery" class="gallery-section">
+    <PrevSectionBtn target="schedule" />
     <h2 class="section-title">Our Moments</h2>
     <p class="text-center text-muted mb-8">Setiap detik bersamamu adalah puisi yang tak pernah selesai kutulis.</p>
     

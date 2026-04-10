@@ -1,10 +1,12 @@
 <script setup>
 import { MapPin, Clock, CalendarDays, CalendarPlus } from 'lucide-vue-next';
 import NextSectionBtn from './NextSectionBtn.vue';
+import PrevSectionBtn from './PrevSectionBtn.vue';
 </script>
 
 <template>
   <section id="schedule" class="schedule-section">
+    <PrevSectionBtn target="hero" />
     <h2 class="section-title">Schedule</h2>
     <p class="text-center text-muted mb-8">Dengan memohon rahmat dan ridho Tuhan Yang Maha Esa, kami mengundang
       Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
@@ -20,7 +22,7 @@ import NextSectionBtn from './NextSectionBtn.vue';
 
       <div class="event-detail">
         <Clock class="icon" :size="20" />
-        <span>09.00</span>
+        <span>09.00 WIB</span>
       </div>
 
       <div class="event-detail">
@@ -35,7 +37,8 @@ import NextSectionBtn from './NextSectionBtn.vue';
 
     <div class="event-card mt-8">
       <div class="event-badge bg-accent">Resepsi Pernikahan</div>
-      <h3 class="event-title">Wyndham Opi Hotel Ballroom</h3>
+      <h3 class="event-title">Ballroom 1<br /><span style="font-size: 1.1rem; opacity: 0.9;">Wyndham Opi Hotel
+          Palembang</span></h3>
 
       <div class="event-detail">
         <CalendarDays class="icon" :size="20" />
@@ -70,6 +73,8 @@ import NextSectionBtn from './NextSectionBtn.vue';
   background-color: var(--color-white);
   border-radius: 1rem;
   padding: 2rem 1.5rem;
+  margin-bottom: 2.5rem;
+  /* Creates perfect layout space between consecutive cards */
   box-shadow: var(--shadow-md);
   position: relative;
   overflow: hidden;

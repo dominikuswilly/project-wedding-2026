@@ -7,6 +7,7 @@ import GiftSection from './components/GiftSection.vue'
 import RsvpSection from './components/RsvpSection.vue'
 import AudioPlayer from './components/AudioPlayer.vue'
 import BottomNav from './components/BottomNav.vue'
+import CoverPage from './components/CoverPage.vue'
 
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
@@ -25,6 +26,7 @@ onMounted(() => {
 
 <template>
   <main class="app-container">
+    <CoverPage />
     <HeroSection />
     <div class="content-wrapper">
       <EventSchedule />

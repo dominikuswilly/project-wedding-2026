@@ -1,107 +1,65 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { Volume2, VolumeX } from 'lucide-vue-next';
+import { ref, onMounted, onUnmounted } from 'vue';
 import backgroundMusic from '../assets/shane.mpeg';
 
-const cacheBuster = Date.now();
-const isPlaying = ref(false);
 const audioRef = ref(null);
-const hidePrompt = ref(false);
+let hasInteracted = false;
+let playInterval = null;
 
-const toggleAudio = () => {
-  if (!audioRef.value) return;
-  hidePrompt.value = true;
-
-  if (isPlaying.value) {
-    audioRef.value.pause();
-    isPlaying.value = false;
-  } else {
-    audioRef.value.play().then(() => {
-      isPlaying.value = true;
+const tryPlayAudio = () => {
+  if (hasInteracted || !audioRef.value) return;
+  
+  const playPromise = audioRef.value.play();
+  
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      hasInteracted = true;
+      if (playInterval) clearInterval(playInterval);
+      removeListeners(); 
     }).catch(e => {
-      console.log('Autoplay prevented', e);
+      // Browsers block autoplay until interaction
     });
   }
 };
 
+const removeListeners = () => {
+  document.removeEventListener('click', tryPlayAudio);
+  document.removeEventListener('touchstart', tryPlayAudio);
+  document.removeEventListener('touchend', tryPlayAudio);
+  document.removeEventListener('touchmove', tryPlayAudio);
+  document.removeEventListener('scroll', tryPlayAudio);
+  document.removeEventListener('keydown', tryPlayAudio);
+};
+
 onMounted(() => {
-  // Adding global scroll listener to remove the prompt text when they scroll
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) hidePrompt.value = true;
-  }, { once: true });
+  // Attempt to play immediately the second the page and HeroSection loads
+  tryPlayAudio();
+
+  // Actively brute-force it every 1000ms until the browser allows it (usually requires user interaction on strict devices)
+  playInterval = setInterval(() => {
+    if (!hasInteracted) {
+      tryPlayAudio();
+    }
+  }, 1000);
+
+  // Hook into all possible interactions (swipes, scrolls, etc).
+  document.addEventListener('click', tryPlayAudio, { passive: true });
+  document.addEventListener('touchstart', tryPlayAudio, { passive: true });
+  document.addEventListener('touchend', tryPlayAudio, { passive: true });
+  document.addEventListener('touchmove', tryPlayAudio, { passive: true });
+  document.addEventListener('scroll', tryPlayAudio, { passive: true });
+  document.addEventListener('keydown', tryPlayAudio, { passive: true });
+});
+
+onUnmounted(() => {
+  if (playInterval) clearInterval(playInterval);
+  removeListeners();
 });
 </script>
 
 <template>
-  <div class="audio-control-container">
-    <div class="audio-prompt" :class="{ 'hidden': hidePrompt }">
-      Tap to play music
-    </div>
-    <button @click="toggleAudio" class="audio-toggle-btn" aria-label="Toggle Music">
-      <Volume2 v-if="isPlaying" :size="24" />
-      <VolumeX v-else :size="24" />
-    </button>
-    <audio ref="audioRef" loop :src="`${backgroundMusic}?v=${cacheBuster}`"></audio>
-  </div>
+  <audio ref="audioRef" autoplay loop preload="auto" :src="backgroundMusic"></audio>
 </template>
 
 <style scoped>
-.audio-control-container {
-  position: fixed;
-  bottom: 2rem;
-  right: 1.5rem;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.audio-prompt {
-  background-color: var(--color-primary-dark);
-  color: white;
-  padding: 0.35rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  box-shadow: var(--shadow-sm);
-  transition: opacity 0.5s ease;
-  animation: pulse 2s infinite;
-}
-
-.audio-prompt.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.audio-toggle-btn {
-  background-color: var(--color-primary);
-  color: white;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
-}
-
-.audio-toggle-btn:hover {
-  transform: scale(1.05);
-  background-color: var(--color-primary-dark);
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.05);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
 </style>

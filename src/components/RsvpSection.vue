@@ -1,5 +1,6 @@
 <script setup>
 import { MessageCircle } from 'lucide-vue-next';
+import PrevSectionBtn from './PrevSectionBtn.vue';
 
 const waNumber = "6285378433655";
 const message = "Halo Kevin & Sherley, saya [Nama Anda] ingin konfirmasi kehadiran pada acara pernikahan kalian. Terima kasih!";
@@ -8,6 +9,7 @@ const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 
 <template>
   <section id="rsvp" class="rsvp-section">
+    <PrevSectionBtn target="gift" />
     <div class="rsvp-card">
       <h2 class="section-title mb-4">RSVP</h2>
       <p class="text-center text-muted mb-8">

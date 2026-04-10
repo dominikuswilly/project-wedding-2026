@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { Copy, Check, QrCode } from 'lucide-vue-next';
 import NextSectionBtn from './NextSectionBtn.vue';
+import PrevSectionBtn from './PrevSectionBtn.vue';
 
 const isCopiedKevin = ref(false);
 const isCopiedSherley = ref(false);
@@ -24,6 +25,7 @@ const copyToClipboard = async (text, person) => {
 
 <template>
   <section id="gift" class="gift-section">
+    <PrevSectionBtn target="gallery" />
     <h2 class="section-title">Wedding Gift</h2>
     <p class="text-center text-muted mb-8">
       Doa restu Anda merupakan karunia yang sangat berarti bagi kami.

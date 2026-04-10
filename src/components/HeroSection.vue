@@ -1,5 +1,6 @@
 <script setup>
 import NextSectionBtn from './NextSectionBtn.vue';
+import Countdown from './Countdown.vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import NextSectionBtn from './NextSectionBtn.vue';
     </div>
 
     <div class="hero-content">
+      <Countdown />
       <p class="pre-title">THE WEDDING OF</p>
       <h1 class="title">Kevin<br /><span class="and-symbol">&</span><br />Sherley</h1>
 
@@ -125,6 +127,5 @@ import NextSectionBtn from './NextSectionBtn.vue';
 
 .hero-next {
   margin-top: 0;
-  padding-bottom: 0;
 }
 </style>

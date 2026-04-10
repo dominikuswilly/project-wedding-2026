@@ -23,7 +23,7 @@ const scrollToTarget = (targetId) => {
 <template>
   <div class="next-btn-container">
     <button @click="scrollToTarget(target)" class="next-btn" :class="{ 'btn-light': light }" aria-label="Next Section">
-      <ChevronDown :size="28" :stroke-width="2.5" />
+      <ChevronDown :size="24" :stroke-width="2.5" />
     </button>
   </div>
 </template>
@@ -33,15 +33,15 @@ const scrollToTarget = (targetId) => {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 6.5rem;
 }
 
 .next-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   background-color: var(--color-white);
   color: var(--color-primary-dark);
