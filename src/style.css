@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
   font-family: var(--font-sans);
   color: var(--color-text);
   background-color: #e5e5e5; /* Desktop backdrop */
@@ -107,6 +108,16 @@ button {
 section {
   padding: 4rem 1.5rem;
   position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+section.is-visible, section.hero-container {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section-title {

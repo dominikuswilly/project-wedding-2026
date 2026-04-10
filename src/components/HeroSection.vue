@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <section class="hero-container">
+  <section id="hero" class="hero-container">
     <div class="hero-bg">
       <img src="/images/hero.png" alt="Kevin & Sherley Pre-wedding" class="img-bg" />
       <div class="overlay"></div>

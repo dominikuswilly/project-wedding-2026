@@ -1,10 +1,26 @@
 <script setup>
+import { onMounted } from 'vue';
 import HeroSection from './components/HeroSection.vue'
 import EventSchedule from './components/EventSchedule.vue'
 import GallerySection from './components/GallerySection.vue'
 import GiftSection from './components/GiftSection.vue'
 import RsvpSection from './components/RsvpSection.vue'
 import AudioPlayer from './components/AudioPlayer.vue'
+import BottomNav from './components/BottomNav.vue'
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+  });
+});
 </script>
 
 <template>
