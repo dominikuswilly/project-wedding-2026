@@ -2,18 +2,18 @@
 import { ref } from 'vue';
 import { Copy, Check, QrCode } from 'lucide-vue-next';
 
-const isCopiedBCA = ref(false);
-const isCopiedMandiri = ref(false);
+const isCopiedKevin = ref(false);
+const isCopiedSherley = ref(false);
 
-const copyToClipboard = async (text, type) => {
+const copyToClipboard = async (text, person) => {
   try {
     await navigator.clipboard.writeText(text);
-    if (type === 'BCA') {
-      isCopiedBCA.value = true;
-      setTimeout(() => isCopiedBCA.value = false, 2000);
+    if (person === 'Kevin') {
+      isCopiedKevin.value = true;
+      setTimeout(() => isCopiedKevin.value = false, 2000);
     } else {
-      isCopiedMandiri.value = true;
-      setTimeout(() => isCopiedMandiri.value = false, 2000);
+      isCopiedSherley.value = true;
+      setTimeout(() => isCopiedSherley.value = false, 2000);
     }
   } catch (err) {
     console.error('Failed to copy', err);
@@ -25,7 +25,7 @@ const copyToClipboard = async (text, type) => {
   <section id="gift" class="gift-section">
     <h2 class="section-title">Wedding Gift</h2>
     <p class="text-center text-muted mb-8">
-      Doa restu Anda merupakan karunia yang sangat berarti bagi kami. 
+      Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
       Jika Anda ingin memberikan tanda kasih untuk kami, dapat melalui:
     </p>
 
@@ -34,27 +34,27 @@ const copyToClipboard = async (text, type) => {
       <div class="bank-header">
         <h3 class="bank-name">BCA</h3>
       </div>
-      <p class="account-number">1234 5678 90</p>
+      <p class="account-number">8555305555</p>
       <p class="account-name">a.n. Kevin Richardson Bunawan</p>
-      
-      <button @click="copyToClipboard('1234567890', 'BCA')" class="btn-copy">
-        <Check v-if="isCopiedBCA" :size="16" />
+
+      <button @click="copyToClipboard('8555305555', 'Kevin')" class="btn-copy">
+        <Check v-if="isCopiedKevin" :size="16" />
         <Copy v-else :size="16" />
-        {{ isCopiedBCA ? 'Tersalin!' : 'Salin Rekening' }}
+        {{ isCopiedKevin ? 'Tersalin!' : 'Salin Rekening' }}
       </button>
     </div>
 
     <div class="bank-card">
       <div class="bank-header">
-        <h3 class="bank-name">Mandiri</h3>
+        <h3 class="bank-name">BCA</h3>
       </div>
-      <p class="account-number">0987 6543 21</p>
+      <p class="account-number">0987654321</p>
       <p class="account-name">a.n. Sherley</p>
-      
-      <button @click="copyToClipboard('0987654321', 'Mandiri')" class="btn-copy">
-        <Check v-if="isCopiedMandiri" :size="16" />
+
+      <button @click="copyToClipboard('0987654321', 'Sherley')" class="btn-copy">
+        <Check v-if="isCopiedSherley" :size="16" />
         <Copy v-else :size="16" />
-        {{ isCopiedMandiri ? 'Tersalin!' : 'Salin Rekening' }}
+        {{ isCopiedSherley ? 'Tersalin!' : 'Salin Rekening' }}
       </button>
     </div>
 
@@ -64,10 +64,10 @@ const copyToClipboard = async (text, type) => {
         <QrCode class="icon" />
         <h3 class="bank-name">QRIS Payment</h3>
       </div>
-      
+
       <div class="qris-placeholder">
         <div class="qris-box">
-          <div class="qris-inner">QRIS<br/>DUMMY</div>
+          <div class="qris-inner">QRIS<br />DUMMY</div>
         </div>
       </div>
       <p class="account-name text-center mt-4">Kevin & Sherley</p>
@@ -103,7 +103,8 @@ const copyToClipboard = async (text, type) => {
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: 1.25rem;
-  color: #005A9C; /* Bank generic color */
+  color: #005A9C;
+  /* Bank generic color */
 }
 
 .account-number {
@@ -160,13 +161,11 @@ const copyToClipboard = async (text, type) => {
 .qris-box {
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(
-    45deg,
-    #000,
-    #000 10px,
-    #fff 10px,
-    #fff 20px
-  );
+  background: repeating-linear-gradient(45deg,
+      #000,
+      #000 10px,
+      #fff 10px,
+      #fff 20px);
   display: flex;
   justify-content: center;
   align-items: center;
